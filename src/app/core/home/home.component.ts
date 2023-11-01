@@ -9,4 +9,6 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./home.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HomeComponent {}
+export class HomeComponent {
+  protected readonly NoahsKitchenDescription = 'NoahsKitchen.Description';
+}

@@ -1,6 +1,5 @@
 import { importProvidersFrom } from '@angular/core';
 import { AppComponent } from './app/app.component';
-import { AppRoutingModule } from './app/app-routing.module';
 import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
@@ -16,7 +15,6 @@ bootstrapApplication(AppComponent, {
   providers: [
     importProvidersFrom(
       BrowserModule,
-      AppRoutingModule,
       BrowserAnimationsModule,
       HttpClientModule,
       TranslateModule.forRoot({
