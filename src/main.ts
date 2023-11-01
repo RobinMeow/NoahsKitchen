@@ -1,11 +1,12 @@
 import { importProvidersFrom } from '@angular/core';
 import { AppComponent } from './app/app.component';
-import { AppRoutingModule } from './app/app-routing.module';
 import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { provideRouter } from '@angular/router';
+import { CORE_ROUTES } from './app/core/core.routes';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -16,7 +17,6 @@ bootstrapApplication(AppComponent, {
   providers: [
     importProvidersFrom(
       BrowserModule,
-      AppRoutingModule,
       BrowserAnimationsModule,
       HttpClientModule,
       TranslateModule.forRoot({
@@ -27,5 +27,6 @@ bootstrapApplication(AppComponent, {
         },
       })
     ),
+    provideRouter(CORE_ROUTES),
   ],
 }).catch((err) => console.error(err));
