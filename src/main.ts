@@ -5,6 +5,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { provideRouter } from '@angular/router';
+import { CORE_ROUTES } from './app/core/core.routes';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -25,5 +27,6 @@ bootstrapApplication(AppComponent, {
         },
       })
     ),
+    provideRouter(CORE_ROUTES),
   ],
 }).catch((err) => console.error(err));

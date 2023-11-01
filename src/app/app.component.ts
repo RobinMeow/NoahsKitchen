@@ -4,7 +4,7 @@ import {
   NgSwitch,
   NgSwitchDefault,
   NgSwitchCase,
-  CommonModule,
+  AsyncPipe,
 } from '@angular/common';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
@@ -14,7 +14,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
   styleUrls: ['./app.component.scss'],
   standalone: true,
   imports: [
-    CommonModule,
+    AsyncPipe,
     TranslateModule,
     NgSwitch,
     NgSwitchDefault,
