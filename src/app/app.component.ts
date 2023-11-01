@@ -7,6 +7,9 @@ import {
   AsyncPipe,
 } from '@angular/common';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { HeaderComponent } from './core/header/header.component';
+import { MenuComponent } from './core/menu/menu.component';
 
 @Component({
   selector: 'app-root',
@@ -20,6 +23,9 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
     NgSwitchDefault,
     NgSwitchCase,
     RouterOutlet,
+    MatSidenavModule,
+    MenuComponent,
+    HeaderComponent,
   ],
 })
 export class AppComponent implements OnInit {

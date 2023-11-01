@@ -4,11 +4,6 @@ export const CORE_ROUTES: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'home',
-  },
-  {
-    path: 'home',
-    pathMatch: 'full',
     loadComponent: () =>
       import('src/app/core/home/home.component').then((c) => c.HomeComponent),
     title: 'missing translation',

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-home',
+  selector: 'core-home',
   standalone: true,
   imports: [CommonModule, TranslateModule],
   templateUrl: './home.component.html',
