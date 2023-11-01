@@ -1,0 +1,8 @@
+<mat-toolbar>
+  <button mat-icon-button (click)="toggleMenu()" [hidden]="drawer.opened">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span routerLink="./" class="cursor-pointer">{{
+    NoahsKitchenName | translate
+  }}</span>
+</mat-toolbar>
