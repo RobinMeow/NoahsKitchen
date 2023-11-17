@@ -6,19 +6,20 @@ import {
 } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { SharedModule } from 'src/app/shared/shared.module';
+
 import { MatButtonModule } from '@angular/material/button';
 import { MatDrawer } from '@angular/material/sidenav';
 import { RouterLink } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'core-header',
   standalone: true,
   imports: [
-    SharedModule,
     MatIconModule,
     MatToolbarModule,
     MatButtonModule,
+    TranslateModule,
     RouterLink,
   ],
   templateUrl: './header.component.html',
