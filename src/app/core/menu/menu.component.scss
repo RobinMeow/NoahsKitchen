@@ -1,4 +1,4 @@
-@import '/src/material.variables.scss';
+@use '@angular/material/toolbar/toolbar-variables';
 
 .menu-wrapper {
 	height: 100%;
@@ -18,9 +18,9 @@
 	align-items: center;
 	white-space: nowrap;
 
-	height: $height-mobile;
+	height: toolbar-variables.$height-mobile;
 
 	@media(min-width: 600px){
-		height: $height-desktop;
+		height: toolbar-variables.$height-desktop;
 	}
 }
