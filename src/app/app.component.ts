@@ -1,11 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import {
-  NgSwitch,
-  NgSwitchDefault,
-  NgSwitchCase,
-  AsyncPipe,
-} from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { HeaderComponent } from './core/header/header.component';
@@ -19,9 +14,6 @@ import { MenuComponent } from './core/menu/menu.component';
   imports: [
     AsyncPipe,
     TranslateModule,
-    NgSwitch,
-    NgSwitchDefault,
-    NgSwitchCase,
     RouterOutlet,
     MatSidenavModule,
     MenuComponent,
