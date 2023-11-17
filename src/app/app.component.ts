@@ -1,7 +1,6 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { AsyncPipe } from '@angular/common';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { HeaderComponent } from './core/header/header.component';
 import { MenuComponent } from './core/menu/menu.component';
@@ -13,20 +12,12 @@ import { MenuComponent } from './core/menu/menu.component';
   standalone: true,
   imports: [
     AsyncPipe,
-    TranslateModule,
     RouterOutlet,
     MatSidenavModule,
     MenuComponent,
     HeaderComponent,
   ],
 })
-export class AppComponent implements OnInit {
-  private readonly _translateService = inject(TranslateService);
-
+export class AppComponent {
   protected readonly NoahsKitchenName: string = 'NoahsKitchen.Name';
-
-  ngOnInit(): void {
-    this._translateService.setDefaultLang('de');
-    this._translateService.use('de');
-  }
 }
