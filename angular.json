@@ -68,10 +68,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "NoahsKitchen:build:production"
+              "buildTarget": "NoahsKitchen:build:production"
             },
             "development": {
-              "browserTarget": "NoahsKitchen:build:development"
+              "buildTarget": "NoahsKitchen:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -79,7 +79,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "NoahsKitchen:build"
+            "buildTarget": "NoahsKitchen:build"
           }
         },
         "test": {
