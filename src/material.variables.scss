@@ -1,7 +1,0 @@
-@import '/node_modules/@angular/material/toolbar/toolbar-variables';
-
-$height-desktop: $height-desktop;
-$height-mobile: $height-mobile;
-
-// this is the single point of truth, of material varibales I use in the application. 
-// So on ng update changes I only need to change this file.
