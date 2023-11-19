@@ -1,3 +1,3 @@
 export const environment = {
-  apiBaseUrl: 'your-api-url',
+  API_BASE_URL: 'your-api-url',
 };
