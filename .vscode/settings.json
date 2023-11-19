@@ -1,5 +1,6 @@
 {
 	"[html]": {
+		"editor.tabSize": 2,
 		"editor.defaultFormatter": "esbenp.prettier-vscode",
 		"editor.codeActionsOnSave": {
 			"source.fixAll.eslint": true
@@ -7,10 +8,32 @@
 		"editor.formatOnSave": true
 	},
 	"[typescript]": {
+		"editor.tabSize": 2,
 		"editor.defaultFormatter": "esbenp.prettier-vscode",
 		"editor.codeActionsOnSave": {
 			"source.fixAll.eslint": true
 		},
 		"editor.formatOnSave": true
+	},
+	"[json]": {
+		"editor.tabSize": 2,
+	},
+	"[scss]": {
+		"editor.tabSize": 2,
+	},
+	"[sass]": {
+		"editor.tabSize": 2,
+	},
+	"[css]": {
+		"editor.tabSize": 2,
+	},
+	"[javascript]": {
+		"editor.tabSize": 2,
+	},
+	"[markdown]": {
+		"editor.tabSize": 2,
+	},
+	"[csharp]": {
+		"editor.tabSize": 4,
 	}
 }

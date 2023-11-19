@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { AuthService } from 'src/app/openapi-services';
 
 @Component({
   selector: 'app-register',
@@ -7,8 +8,20 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegisterComponent {
+  private readonly _authService = inject(AuthService);
 
+  protected onRegister(): void {
+    this._authService
+      .authRegisterPost({
+        email: 'robin@robin.de',
+        name: 'robin',
+        password: 'meow',
+      })
+      .subscribe((t) => {
+        console.log(t);
+      });
+  }
 }

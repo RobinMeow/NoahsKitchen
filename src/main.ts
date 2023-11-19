@@ -5,9 +5,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { provideRouter } from '@angular/router';
 import { CORE_ROUTES } from './app/core/core.routes';
+import { provideOpenApiBasePath } from './app/providers/provideOpenApiBasePath';
 
 bootstrapApplication(AppComponent, {
   providers: [
+    provideOpenApiBasePath(),
     importProvidersFrom(
       BrowserModule,
       BrowserAnimationsModule,

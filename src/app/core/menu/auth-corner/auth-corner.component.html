@@ -1,9 +1,9 @@
 <div class="auth-wrapper">
   <ng-container *ngIf="!isAuthenticated">
-    <button mat-flat-button color="accent" (click)="redirectToSignup()">
+    <button mat-flat-button color="accent" routerLink="/register">
       Account erstellen
     </button>
-    <button mat-raised-button color="accent" (click)="redirectToLogin()">
+    <button mat-raised-button color="accent" routerLink="/login">
       Einloggen
     </button>
   </ng-container>

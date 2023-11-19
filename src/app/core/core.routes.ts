@@ -9,9 +9,9 @@ export const CORE_ROUTES: Routes = [
     title: 'Startseite',
   },
   // {
-  //   path: 'signin',
+  //   path: 'login',
   //   loadComponent: () =>
-  //     import('src/app/sign-in/sign-in.component').then(
+  //     import('src/app/core/auth/').then(
   //       (c) => c.SignInComponent
   //     ),
   //   title: 'Einloggen',
