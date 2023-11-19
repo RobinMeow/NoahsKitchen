@@ -10,7 +10,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDrawer } from '@angular/material/sidenav';
 import { RouterLink } from '@angular/router';
-import { applicationName } from 'src/app.globals';
+import { applicationName } from 'src/globals';
 
 @Component({
   selector: 'core-header',
