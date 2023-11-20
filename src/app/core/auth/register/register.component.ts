@@ -1,6 +1,8 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AuthService } from 'src/app/openapi-services';
+import { AuthDomainService } from '../auth.domain.service';
+import { RegisterChef } from './RegisterChef';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -11,17 +13,17 @@ import { AuthService } from 'src/app/openapi-services';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegisterComponent {
-  private readonly _authService = inject(AuthService);
+  private readonly _authService = inject(AuthDomainService);
+  private readonly _router = inject(Router);
 
-  protected onRegister(): void {
-    this._authService
-      .authRegisterPost({
-        email: 'robin@robin.de',
-        name: 'robin',
-        password: 'meow',
-      })
-      .subscribe((t) => {
-        console.log(t);
-      });
+  protected async onRegister(): Promise<void> {
+    const chef: RegisterChef = {
+      email: 'robin@robin.de',
+      name: 'robin',
+      password: 'meow',
+    };
+    await this._authService.registerAsync(chef);
+    await this._authService.loginAsync(chef);
+    this._router.navigateByUrl('/');
   }
 }
