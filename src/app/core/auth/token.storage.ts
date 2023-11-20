@@ -16,4 +16,8 @@ export class TokenStorage {
   retrieve(): string | null {
     return localStorage.getItem(this._key);
   }
+
+  clear(): void {
+    localStorage.removeItem(this._key);
+  }
 }

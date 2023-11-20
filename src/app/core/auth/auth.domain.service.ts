@@ -1,7 +1,9 @@
 import {
+  EffectRef,
   Injectable,
   Signal,
   WritableSignal,
+  effect,
   inject,
   signal,
 } from '@angular/core';
@@ -20,7 +22,17 @@ export class AuthDomainService {
   private readonly _tokenSignal: WritableSignal<string | null | undefined> =
     signal(undefined);
 
-  private readonly _key: string = 'token';
+  private readonly _onTokenChanged: EffectRef = effect(() => {
+    const token = this._tokenSignal();
+
+    if (token === undefined) return;
+
+    if (token !== null) {
+      this._tokenStorage.store(token);
+    } else {
+      this._tokenStorage.clear();
+    }
+  });
 
   constructor() {
     const token: string | null = this._tokenStorage.retrieve();
@@ -48,6 +60,10 @@ export class AuthDomainService {
     this._tokenSignal.set(token);
 
     return token;
+  }
+
+  logout(): void {
+    this._tokenSignal.set(null);
   }
 
   /**

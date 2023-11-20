@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatDrawer } from '@angular/material/sidenav';
-import { Router, RouterLink } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { AuthDomainService } from '../../auth/auth.domain.service';
 
@@ -23,10 +23,11 @@ export class AuthCornerComponent {
   @Input() drawer!: MatDrawer;
 
   private readonly _authService = inject(AuthDomainService);
-  private readonly _router = inject(Router);
 
   protected tokenSignal: Signal<string | null | undefined> =
     this._authService.getTokenSignal();
 
-  protected logout(): void {}
+  protected logout(): void {
+    this._authService.logout();
+  }
 }
