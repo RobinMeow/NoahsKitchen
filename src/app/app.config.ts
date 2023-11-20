@@ -12,8 +12,8 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideOpenApiBasePath(),
     provideHttpClient(withInterceptors([authInterceptor])),
-    provideAnimations(),
     importProvidersFrom(BrowserModule),
+    provideAnimations(),
     provideRouter(CORE_ROUTES),
   ],
 };
