@@ -1,1 +1,1 @@
-export const applicationName: string = 'Gemeinschaftsküche';
+export const applicationName: string = 'Geschmack nach Christlicher Art';
