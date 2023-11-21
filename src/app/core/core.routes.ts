@@ -8,19 +8,19 @@ export const CORE_ROUTES: Routes = [
       import('src/app/core/home/home.component').then((c) => c.HomeComponent),
     title: 'Startseite',
   },
-  // {
-  //   path: 'login',
-  //   loadComponent: () =>
-  //     import('src/app/core/auth/').then(
-  //       (c) => c.SignInComponent
-  //     ),
-  //   title: 'Einloggen',
-  // },
+  {
+    path: 'login',
+    loadComponent: () =>
+      import('src/app/core/auth/login/login.component').then(
+        (c) => c.LoginComponent,
+      ),
+    title: 'Einloggen',
+  },
   {
     path: 'register',
     loadComponent: () =>
       import('src/app/core/auth/register/register.component').then(
-        (c) => c.RegisterComponent
+        (c) => c.RegisterComponent,
       ),
     title: 'Registrieren',
   },
