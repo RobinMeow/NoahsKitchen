@@ -5,7 +5,8 @@
 		"editor.codeActionsOnSave": {
 			"source.fixAll.eslint": true
 		},
-		"editor.formatOnSave": true
+		"editor.formatOnSave": true,
+		"files.trimTrailingWhitespace": true
 	},
 	"[typescript]": {
 		"editor.tabSize": 2,
@@ -13,7 +14,8 @@
 		"editor.codeActionsOnSave": {
 			"source.fixAll.eslint": true
 		},
-		"editor.formatOnSave": true
+		"editor.formatOnSave": true,
+		"files.trimTrailingWhitespace": true
 	},
 	"[json]": {
 		"editor.tabSize": 2,
