@@ -13,7 +13,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { Chef } from '../Chef';
+import { ChefFromControlFactory } from '../ChefFormControlFactory';
+import { ChefConstraints } from '../ChefConstraints';
 
 @Component({
   selector: 'auth-register',
@@ -36,25 +37,15 @@ export class RegisterComponent {
   private readonly _router = inject(Router);
   private readonly _nnfb = inject(NonNullableFormBuilder);
 
-  protected readonly chefConstraints = Chef.Constraints;
+  private readonly _chefFormControlFactory = new ChefFromControlFactory(
+    this._nnfb,
+  );
+
+  protected readonly chefConstraints = ChefConstraints;
 
   protected readonly registerForm = this._nnfb.group({
-    chefname: [
-      '',
-      [
-        Validators.required,
-        Validators.minLength(this.chefConstraints.name.minLength),
-        Validators.maxLength(this.chefConstraints.name.maxLength),
-      ],
-    ],
-    password: [
-      '',
-      [
-        Validators.required,
-        Validators.minLength(this.chefConstraints.password.minLength),
-        Validators.maxLength(this.chefConstraints.password.maxLength),
-      ],
-    ],
+    chefname: this._chefFormControlFactory.Name(),
+    password: this._chefFormControlFactory.Password(),
     email: ['', [Validators.email]],
   });
 

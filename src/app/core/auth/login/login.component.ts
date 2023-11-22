@@ -5,13 +5,14 @@ import {
   FormControl,
   NonNullableFormBuilder,
   ReactiveFormsModule,
-  Validators,
 } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
 import { AuthDomainService } from '../auth.domain.service';
-import { Chef } from '../Chef';
 import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { ChefFromControlFactory } from '../ChefFormControlFactory';
+import { ChefConstraints } from '../ChefConstraints';
 
 @Component({
   selector: 'auth-login',
@@ -22,6 +23,7 @@ import { MatInputModule } from '@angular/material/input';
     MatInputModule,
     ReactiveFormsModule,
     MatIconModule,
+    MatButtonModule,
   ],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss', '../auth.scss'],
@@ -32,25 +34,15 @@ export class LoginComponent {
   private readonly _router = inject(Router);
   private readonly _nnfb = inject(NonNullableFormBuilder);
 
-  protected readonly chefConstraints = Chef.Constraints;
+  protected readonly chefConstraints = ChefConstraints;
+
+  private readonly _chefFormControlFactory = new ChefFromControlFactory(
+    this._nnfb,
+  );
 
   protected readonly loginForm = this._nnfb.group({
-    chefname: [
-      '',
-      [
-        Validators.required,
-        Validators.minLength(this.chefConstraints.name.minLength),
-        Validators.maxLength(this.chefConstraints.name.maxLength),
-      ],
-    ],
-    password: [
-      '',
-      [
-        Validators.required,
-        Validators.minLength(this.chefConstraints.password.minLength),
-        Validators.maxLength(this.chefConstraints.password.maxLength),
-      ],
-    ],
+    chefname: this._chefFormControlFactory.Name(),
+    password: this._chefFormControlFactory.Password(),
   });
 
   protected readonly chefnameControl: FormControl<string> =
