@@ -1,9 +1,1 @@
-@use '../../../../varibales';
 
-.mat-controls {
-  display: flex;
-  flex-flow: column;
-  width: 300px;
-  gap: #{varibales.$spacing};
-  margin-bottom: #{varibales.$spacing};
-}

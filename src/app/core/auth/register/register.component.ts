@@ -13,9 +13,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { Chef } from '../Chef';
 
 @Component({
-  selector: 'app-register',
+  selector: 'auth-register',
   standalone: true,
   imports: [
     CommonModule,
@@ -27,7 +28,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatTooltipModule,
   ],
   templateUrl: './register.component.html',
-  styleUrl: './register.component.scss',
+  styleUrls: ['./register.component.scss', '../auth.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegisterComponent {
@@ -35,19 +36,29 @@ export class RegisterComponent {
   private readonly _router = inject(Router);
   private readonly _nnfb = inject(NonNullableFormBuilder);
 
+  protected readonly chefConstraints = Chef.Constraints;
+
   protected readonly registerForm = this._nnfb.group({
     chefname: [
       '',
-      [Validators.required, Validators.minLength(3), Validators.maxLength(20)],
+      [
+        Validators.required,
+        Validators.minLength(this.chefConstraints.name.minLength),
+        Validators.maxLength(this.chefConstraints.name.maxLength),
+      ],
     ],
     password: [
       '',
-      [Validators.required, Validators.minLength(4), Validators.maxLength(50)],
+      [
+        Validators.required,
+        Validators.minLength(this.chefConstraints.password.minLength),
+        Validators.maxLength(this.chefConstraints.password.maxLength),
+      ],
     ],
     email: ['', [Validators.email]],
   });
 
-  hidePassword = true;
+  protected hidePassword = true;
 
   protected getInvalidEmailMessage() {
     return this.registerForm.controls.email.hasError('email')

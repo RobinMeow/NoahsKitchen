@@ -12,7 +12,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { AuthDomainService } from '../../auth/auth.domain.service';
 
 @Component({
-  selector: 'app-auth-corner',
+  selector: 'auth-corner',
   standalone: true,
   imports: [CommonModule, MatButtonModule, RouterLink],
   templateUrl: './auth-corner.component.html',
