@@ -1,5 +1,5 @@
 <mat-toolbar>
-  <button mat-icon-button (click)="toggleMenu()" [hidden]="drawer.opened">
+  <button mat-icon-button (click)="onMenuClick()" [hidden]="hideMenuButton">
     <mat-icon>menu</mat-icon>
   </button>
   <span routerLink="" class="cursor-pointer">{{ applicationName }}</span>
