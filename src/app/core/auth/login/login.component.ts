@@ -53,7 +53,13 @@ export class LoginComponent {
 
   protected hidePassword = true;
 
-  protected onSubmit() {
-    console.log('onSubmit called');
+  protected async onSubmit(): Promise<void> {
+    if (this.loginForm.invalid) return;
+
+    await this._authService.loginAsync({
+      name: this.chefnameControl.value,
+      password: this.passwordControl.value,
+    });
+    this._router.navigateByUrl('/');
   }
 }
