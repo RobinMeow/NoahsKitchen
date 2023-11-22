@@ -1,14 +1,14 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  EventEmitter,
   Input,
-  OnInit,
+  Output,
 } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { MatButtonModule } from '@angular/material/button';
-import { MatDrawer } from '@angular/material/sidenav';
 import { RouterLink } from '@angular/router';
 import { applicationName } from 'src/globals';
 
@@ -18,17 +18,15 @@ import { applicationName } from 'src/globals';
   imports: [MatIconModule, MatToolbarModule, MatButtonModule, RouterLink],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
-  changeDetection: ChangeDetectionStrategy.Default,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HeaderComponent implements OnInit {
-  protected readonly applicationName = applicationName;
-  @Input({ required: true }) drawer!: MatDrawer;
+export class HeaderComponent {
+  @Input({ required: true }) hideMenuButton!: boolean;
+  @Output() openMenu = new EventEmitter<void>();
 
-  ngOnInit(): void {
-    this.drawer.open();
-  }
+  protected readonly applicationName: string = applicationName;
 
-  protected toggleMenu(): void {
-    this.drawer.toggle();
+  protected onMenuClick(): void {
+    this.openMenu.emit();
   }
 }
