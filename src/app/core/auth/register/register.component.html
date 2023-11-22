@@ -1,4 +1,5 @@
-<h2>Registrieren</h2>
+<h2>Account erstellen</h2>
+
 <form [formGroup]="registerForm" (submit)="onSubmit()">
   <div class="mat-controls">
     <mat-form-field>
@@ -9,9 +10,9 @@
       <!-- Weinberg des Herrn: Ein Spitzname für jemanden, der in seinem spirituellen Leben fruchtbar und produktiv ist. -->
       <!-- Weizen der Ernte: Ein Spitzname für jemanden, der reif ist und von Gott gebraucht werden kann. -->
       <input
+        matInput
         [formControl]="registerForm.controls.chefname"
         placeholder="Weinberg des Herrn"
-        matInput
         type="text"
       />
       <mat-hint>Zwischen 3 und 20 Zeichen</mat-hint>
