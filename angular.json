@@ -9,7 +9,11 @@
         "@schematics/angular:component": {
           "style": "scss",
           "changeDetection": "OnPush",
-          "standalone": true
+          "standalone": true,
+          "prefix": "apple"
+        },
+        "@schematics/angular:interceptor": {
+          "functional": true
         }
       },
       "root": "",
@@ -57,7 +61,13 @@
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true,
-              "namedChunks": true
+              "namedChunks": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.development.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"

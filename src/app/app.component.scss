@@ -1,21 +1,16 @@
 @use '@angular/material/toolbar/toolbar-variables';
+@use '../varibales';
 
 .wrapper {
 	height: 100%;
 }
 
-.set-min-height {
-	// full height, to ensure footer is visible when you scroll (min height, to make sure it only applies when contnt is smaller than full height)
-	min-height: calc(100vh - (toolbar-variables.$height-mobile));; // mobile first approach
-
-	// i checked the browser when the toolbar changes its height. this is where the 600 comes from (this value could change if someone messes around with density)
-	@media(min-width: 600px){
-		min-height: calc(100vh - (toolbar-variables.$height-desktop)); // subtract header
-	}
-}
-
 .menu {
 	padding: 0;
+}
+
+.router-outlet-defaults {
+	margin: #{varibales.$spacing};
 }
 
 @media(max-width: 600px){

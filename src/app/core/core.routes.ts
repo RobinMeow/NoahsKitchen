@@ -6,24 +6,24 @@ export const CORE_ROUTES: Routes = [
     pathMatch: 'full',
     loadComponent: () =>
       import('src/app/core/home/home.component').then((c) => c.HomeComponent),
-    title: 'missing translation',
+    title: 'Startseite',
   },
-  // {
-  //   path: 'signin',
-  //   loadComponent: () =>
-  //     import('src/app/sign-in/sign-in.component').then(
-  //       (c) => c.SignInComponent
-  //     ),
-  //   title: 'Einloggen',
-  // },
-  // {
-  //   path: 'signup',
-  //   loadComponent: () =>
-  //     import('src/app/sign-up/sign-up.component').then(
-  //       (c) => c.SignUpComponent
-  //     ),
-  //   title: 'Registrieren',
-  // },
+  {
+    path: 'login',
+    loadComponent: () =>
+      import('src/app/core/auth/login/login.component').then(
+        (c) => c.LoginComponent,
+      ),
+    title: 'Einloggen',
+  },
+  {
+    path: 'register',
+    loadComponent: () =>
+      import('src/app/core/auth/register/register.component').then(
+        (c) => c.RegisterComponent,
+      ),
+    title: 'Registrieren',
+  },
   {
     path: '**',
     redirectTo: '',

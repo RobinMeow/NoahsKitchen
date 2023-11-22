@@ -7,7 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "api-generation": "openapi-generator-cli generate -g typescript-angular --remove-operation-id-prefix -i http://localhost:5126/Swagger/v1/swagger.json -o ./src/app/openapi-services"
   },
   "private": true,
   "dependencies": {
@@ -21,6 +22,7 @@
     "@angular/platform-browser": "^17.0.3",
     "@angular/platform-browser-dynamic": "^17.0.3",
     "@angular/router": "^17.0.3",
+    "@auth0/angular-jwt": "^5.2.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.2"
@@ -34,6 +36,7 @@
     "@angular-eslint/template-parser": "17.1.0",
     "@angular/cli": "~17.0.1",
     "@angular/compiler-cli": "^17.0.3",
+    "@openapitools/openapi-generator-cli": "^2.7.0",
     "@types/jasmine": "~4.3.0",
     "@typescript-eslint/eslint-plugin": "^6.10.0",
     "@typescript-eslint/parser": "^6.10.0",
@@ -44,6 +47,7 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.0.0",
+    "prettier": "3.1",
     "typescript": "~5.2.2"
   }
 }
