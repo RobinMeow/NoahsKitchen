@@ -8,6 +8,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { CORE_ROUTES } from './core/core.routes';
 import { provideOpenApiBasePath } from './providers/provideOpenApiBasePath';
 import { authInterceptor } from './core/auth/auth.interceptor';
+import { provideAppTitleStrategy } from './app-title-strategy/provideAppTitleStrategy';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -16,5 +17,6 @@ export const appConfig: ApplicationConfig = {
     importProvidersFrom(BrowserModule),
     provideAnimations(),
     provideRouter(CORE_ROUTES),
+    provideAppTitleStrategy(),
   ],
 };
