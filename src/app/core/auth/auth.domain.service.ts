@@ -41,8 +41,14 @@ export class AuthDomainService {
 
   registerAsync(chef: RegisterChef): Promise<void> {
     const dto: RegisterChefDto = {
-      ...chef,
+      name: chef.name,
+      password: chef.password,
     };
+
+    if (chef.email) {
+      dto.email = chef.email;
+    }
+
     return firstValueFrom(this._authService.registerAsync(dto));
   }
 
