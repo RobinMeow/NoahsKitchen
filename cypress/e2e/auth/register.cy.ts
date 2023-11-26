@@ -7,7 +7,7 @@ describe('register should', () => {
     cy.getByAttr('title').should('be.visible');
   });
 
-  it('register successfully', () => {
+  it('register and delete account successfully', () => {
     // Register
     const credentials = {
       chefname: 'Cypress-Register',
