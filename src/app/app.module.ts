@@ -5,10 +5,7 @@
 
 // @NgModule({
 //   declarations: [],
-//   imports: [
-//     provideFirebaseApp(() => initializeApp(environment.firebase))
-//     provideAuth(() => getAuth())
-//   ],
+//   imports: [],
 //   providers: [],
 //   bootstrap: []
 // })

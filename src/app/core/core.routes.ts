@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { authGuard } from './auth/auth.guard';
 
 export const CORE_ROUTES: Routes = [
   {
@@ -23,6 +24,15 @@ export const CORE_ROUTES: Routes = [
         (c) => c.RegisterComponent,
       ),
     title: 'Registrieren',
+  },
+  {
+    path: 'delete-account',
+    canActivate: [authGuard],
+    loadComponent: () =>
+      import('src/app/core/auth/delete-account/delete-account.component').then(
+        (c) => c.DeleteAccountComponent,
+      ),
+    title: 'Account löschen',
   },
   {
     path: '**',

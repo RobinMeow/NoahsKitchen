@@ -60,7 +60,7 @@ declare namespace Cypress {
 
 /**
  * @example
- * <button data-cy="my-button"></button>
+ * <button data-cy-my-button></button>
  * Cy.getByDataCy('my-button').should.be('be.visivle');
  */
 function getByAttr(
@@ -74,9 +74,7 @@ function getByAttr(
       >
     | undefined,
 ): Cypress.Chainable<JQuery<HTMLElement>> {
-  return cy.get(`[data-cy="${selector}"]`);
+  return cy.get(`[data-cy-${selector}]`);
 }
 
 Cypress.Commands.add('getByAttr', getByAttr);
-
-function clearUsers() {}

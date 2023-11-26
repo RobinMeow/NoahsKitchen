@@ -1,4 +1,4 @@
-<h2 data-cy="title">Account erstellen</h2>
+<h2 data-cy-title>Account erstellen</h2>
 
 <form [formGroup]="registerForm" (submit)="onSubmit()">
   <div class="forms-column">
@@ -14,7 +14,7 @@
         [formControl]="registerForm.controls.chefname"
         placeholder="Weinberg des Herrn"
         type="text"
-        data-cy="register-name-input"
+        data-cy-register-name-input
       />
       <mat-hint>Zwischen 3 und 20 Zeichen</mat-hint>
     </mat-form-field>
@@ -26,7 +26,7 @@
         [formControl]="registerForm.controls.password"
         placeholder="iLoveJesus<3"
         [type]="hidePassword ? 'password' : 'text'"
-        data-cy="register-password-input"
+        data-cy-register-password-input
       />
       <mat-hint>Zwischen 4 und 50 Zeichen</mat-hint>
       <button
@@ -63,7 +63,7 @@
     mat-raised-button
     color="primary"
     type="submit"
-    data-cy="register-submit-button"
+    data-cy-register-submit-button
   >
     Registrieren
   </button>
