@@ -43,7 +43,7 @@ export class AuthDomainService {
     const dto: RegisterChefDto = {
       ...chef,
     };
-    return firstValueFrom(this._authService.authRegisterPost(dto));
+    return firstValueFrom(this._authService.registerAsync(dto));
   }
 
   async loginAsync(credentials: LoginCredentials): Promise<string> {
@@ -54,7 +54,7 @@ export class AuthDomainService {
       throw new Error('Login password may not be empty.');
 
     const token = await firstValueFrom(
-      this._authService.authLoginPost(credentials),
+      this._authService.loginAsync(credentials),
     );
 
     this._tokenSignal.set(token);
