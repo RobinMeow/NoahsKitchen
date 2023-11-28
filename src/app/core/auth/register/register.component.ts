@@ -57,12 +57,11 @@ export class RegisterComponent {
       : '';
   }
 
-  async onSubmit(): Promise<void> {
+  protected async onSubmit(): Promise<void> {
     await this.registerAndLogin();
-    this._router.navigateByUrl('/');
   }
 
-  async registerAndLogin(): Promise<void> {
+  protected async registerAndLogin(): Promise<void> {
     const chef: RegisterChef = {
       name: this.registerForm.controls.chefname.value,
       password: this.registerForm.controls.password.value,
@@ -70,5 +69,6 @@ export class RegisterComponent {
     };
     await this._authService.registerAsync(chef);
     await this._authService.loginAsync(chef);
+    await this._router.navigateByUrl('/');
   }
 }

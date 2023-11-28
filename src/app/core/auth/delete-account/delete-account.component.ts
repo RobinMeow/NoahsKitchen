@@ -51,7 +51,7 @@ export class DeleteAccountComponent {
 
     const chef: Chef | null = this._chefSignal();
     if (chef === null) {
-      this._router.navigateByUrl('/');
+      await this._router.navigateByUrl('/');
       return;
     }
 
@@ -62,6 +62,6 @@ export class DeleteAccountComponent {
 
     await this._authService.removeAsync(credentials);
 
-    this._router.navigateByUrl('/');
+    await this._router.navigateByUrl('/');
   }
 }

@@ -55,6 +55,9 @@ declare namespace Cypress {
           >
         | undefined,
     ): Cypress.Chainable<JQuery<HTMLElement>>;
+
+    createTestUser(): void;
+    deleteTestUser(): void;
   }
 }
 
@@ -78,3 +81,45 @@ function getByAttr(
 }
 
 Cypress.Commands.add('getByAttr', getByAttr);
+
+function createTestUser() {
+  cy.fixture('test-user.json').as('user');
+  cy.get('@user').then((user) => {
+    const { chefname, password }: any = user;
+
+    const registerUrl = '/register';
+
+    cy.location('pathname').then((currentPath) => {
+      if (currentPath !== registerUrl) {
+        cy.visit(registerUrl);
+      }
+    });
+
+    cy.getByAttr('register-name-input').type(chefname);
+    cy.getByAttr('password-input').type(password);
+
+    cy.intercept('http://localhost:5126/Auth/RegisterAsync').as(
+      'registerAsync',
+    );
+
+    cy.getByAttr('register-form').submit();
+
+    cy.wait('@registerAsync');
+  });
+}
+
+Cypress.Commands.add('createTestUser', createTestUser);
+
+function deleteTestUser() {
+  cy.fixture('test-user.json').as('user');
+  cy.get('@user').then((user) => {
+    const { password }: any = user;
+    cy.visit('/delete-account');
+    cy.getByAttr('password-input').type(password);
+    cy.intercept('http://localhost:5126/Auth/DeleteAsync').as('deleteAsync');
+    cy.getByAttr('delete-account-form').submit();
+    cy.wait('@deleteAsync');
+  });
+}
+
+Cypress.Commands.add('deleteTestUser', deleteTestUser);

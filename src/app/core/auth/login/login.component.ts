@@ -60,6 +60,6 @@ export class LoginComponent {
       name: this.chefnameControl.value,
       password: this.passwordControl.value,
     });
-    this._router.navigateByUrl('/');
+    await this._router.navigateByUrl('/');
   }
 }

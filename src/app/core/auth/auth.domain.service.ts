@@ -71,7 +71,7 @@ export class AuthDomainService {
     return firstValueFrom(this._authService.registerAsync(dto));
   }
 
-  async loginAsync(credentials: Credentials): Promise<string> {
+  async loginAsync(credentials: Credentials): Promise<void> {
     if (credentials.name.length === 0)
       throw new Error('Login name may not be missing.');
 
@@ -83,8 +83,6 @@ export class AuthDomainService {
     );
 
     this._tokenSignal.set(token);
-
-    return token;
   }
 
   logout(): void {
