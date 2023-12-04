@@ -8,10 +8,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: PWD
+        run: pwd
+
       - name: Cypress run
         uses: cypress-io/github-action@v6.6.0
         with:
-          spec: ../cypress/e2e/**.cy.js
+          spec: cypress/e2e/**.cy.js
           if-no-files-found: error
           browser: chrome
           build: npm run build
