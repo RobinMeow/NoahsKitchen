@@ -48,3 +48,6 @@ firebase.json
 **/node_modules/*
 **/.firebaserc
 .runtimeconfig.json
+
+# cypress
+cypress/screenshots/**

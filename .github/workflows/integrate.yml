@@ -17,7 +17,7 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v6.6.0
         with:
-          spec: cypress\e2e\header\header.cy.ts
+          spec: cypress/e2e/**/*.cy.ts
           if-no-files-found: error
           browser: chrome
           build: npm run build
