@@ -1,0 +1,20 @@
+name: Cypress tests
+on: push
+jobs:
+  cypress-run:
+    name: Cypress run
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Cypress run
+        uses: cypress-io/github-action@v6.6.0
+        with:
+          spec: cypress/e2e/**.cy.js
+          auto-cancel-after-failures: 2
+          if-no-files-found: error
+          browser: chrome
+          # wait-on: 'http://localhost:3333'
+          # build: npm run build
+          # start: npm start
