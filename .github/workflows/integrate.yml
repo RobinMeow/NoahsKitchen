@@ -11,6 +11,9 @@ jobs:
       - name: PWD
         run: pwd
 
+      - name: DIR
+        run: dir
+
       - name: Cypress run
         uses: cypress-io/github-action@v6.6.0
         with:
