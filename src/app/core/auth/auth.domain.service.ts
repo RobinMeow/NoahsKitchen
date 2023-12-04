@@ -8,10 +8,17 @@ import {
   signal,
 } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
-import { AuthService, RegisterChefDto } from 'src/app/openapi-services';
+import {
+  AuthService,
+  DeleteChefDto,
+  RegisterChefDto,
+} from 'src/app/openapi-services';
 import { RegisterChef } from './register/RegisterChef';
-import { LoginCredentials } from './LoginCredentials';
+import { Credentials } from './Credentials';
 import { TokenStorage } from './token.storage';
+import { Chef } from './Chef';
+import { JwtDecoderService } from './jwt-decoder.service';
+import { DecodedToken } from './DecodedToken';
 
 @Injectable({
   providedIn: 'root',
@@ -19,20 +26,32 @@ import { TokenStorage } from './token.storage';
 export class AuthDomainService {
   private readonly _authService = inject(AuthService);
   private readonly _tokenStorage = inject(TokenStorage);
+  private readonly _tokenDecoder = inject(JwtDecoderService);
   private readonly _tokenSignal: WritableSignal<string | null | undefined> =
     signal(undefined);
 
-  private readonly _onTokenChanged: EffectRef = effect(() => {
-    const token = this._tokenSignal();
+  private readonly _onTokenChanged: EffectRef = effect(
+    () => {
+      const token = this._tokenSignal();
 
-    if (token === undefined) return;
+      if (token === undefined) return;
 
-    if (token !== null) {
-      this._tokenStorage.store(token);
-    } else {
-      this._tokenStorage.clear();
-    }
-  });
+      if (token !== null) {
+        const decodedToken: DecodedToken = this._tokenDecoder.decode(token);
+        this._currentUserSignal.set(new Chef(decodedToken));
+        this._tokenStorage.store(token);
+      } else {
+        this._tokenStorage.clear();
+        this._currentUserSignal.set(null);
+      }
+    },
+    {
+      allowSignalWrites: true,
+    },
+  );
+
+  private readonly _currentUserSignal: WritableSignal<Chef | null> =
+    signal(null);
 
   constructor() {
     const token: string | null = this._tokenStorage.retrieve();
@@ -41,12 +60,18 @@ export class AuthDomainService {
 
   registerAsync(chef: RegisterChef): Promise<void> {
     const dto: RegisterChefDto = {
-      ...chef,
+      name: chef.name,
+      password: chef.password,
     };
+
+    if (chef.email) {
+      dto.email = chef.email;
+    }
+
     return firstValueFrom(this._authService.registerAsync(dto));
   }
 
-  async loginAsync(credentials: LoginCredentials): Promise<string> {
+  async loginAsync(credentials: Credentials): Promise<void> {
     if (credentials.name.length === 0)
       throw new Error('Login name may not be missing.');
 
@@ -58,8 +83,6 @@ export class AuthDomainService {
     );
 
     this._tokenSignal.set(token);
-
-    return token;
   }
 
   logout(): void {
@@ -72,5 +95,24 @@ export class AuthDomainService {
    */
   public getTokenSignal(): Signal<string | null | undefined> {
     return this._tokenSignal.asReadonly();
+  }
+
+  public getCurrentUserSignal(): Signal<Chef | null> {
+    return this._currentUserSignal.asReadonly();
+  }
+
+  async removeAsync(credentials: Credentials): Promise<void> {
+    if (credentials.name.length === 0)
+      throw new Error('Cannot delete a Chef without name.');
+
+    if (credentials.password.length === 0)
+      throw new Error('Cannot delete a Chef without password confirmation.');
+
+    const deleteChefDto: DeleteChefDto = {
+      ...credentials,
+    };
+
+    await firstValueFrom(this._authService.deleteAsync(deleteChefDto));
+    this.logout();
   }
 }

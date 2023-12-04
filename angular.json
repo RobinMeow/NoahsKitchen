@@ -14,6 +14,9 @@
         },
         "@schematics/angular:interceptor": {
           "functional": true
+        },
+        "@schematics/angular:guard": {
+          "functional": true
         }
       },
       "root": "",
@@ -118,12 +121,59 @@
               "src/**/*.html"
             ]
           }
+        },
+        "cypress-run": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "devServerTarget": "NoahsKitchen:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "NoahsKitchen:serve:production"
+            }
+          }
+        },
+        "cypress-open": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "watch": true,
+            "headless": false
+          }
+        },
+        "ct": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "devServerTarget": "NoahsKitchen:serve",
+            "watch": true,
+            "headless": false,
+            "testingType": "component"
+          },
+          "configurations": {
+            "development": {
+              "devServerTarget": "NoahsKitchen:serve:development"
+            }
+          }
+        },
+        "e2e": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "devServerTarget": "NoahsKitchen:serve",
+            "watch": true,
+            "headless": false
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "NoahsKitchen:serve:production"
+            }
+          }
         }
       }
     }
   },
   "cli": {
     "schematicCollections": [
+      "@schematics/angular",
+      "@cypress/schematic",
       "@angular-eslint/schematics"
     ]
   }
