@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Api\NoahsKitchenApi.csproj" />
+    <ProjectReference Include="..\server\server.csproj" />
   </ItemGroup>
 
 </Project>
